@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+       http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <context:annotation-config/>
+    <cache:annotation-driven cache-manager="cacheManager"/>
+
+    <!-- 扫描注解Bean -->
+    <context:component-scan base-package="com.hong.redis"/>
+    <!-- 初始化属性文件 -->
+    <context:property-placeholder location="classpath:redis.properties"/>
+
+    <!-- 配置spring-session -->
+    <!--<bean id="redisHttpSession" class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration"/>-->
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig"
+          p:maxTotal="${redis.pool.maxTotal}"
+          p:maxIdle="${redis.pool.maxIdle}"
+          p:maxWaitMillis="${redis.pool.maxWaitMillis}"
+          p:minEvictableIdleTimeMillis="${redis.pool.minEvictableIdleTimeMillis}"
+          p:numTestsPerEvictionRun="${redis.pool.numTestsPerEvictionRun}"
+          p:timeBetweenEvictionRunsMillis="${redis.pool.timeBetweenEvictionRunsMillis}"
+          p:blockWhenExhausted="${redis.pool.blockWhenExhausted}" />
+    <!-- 配置redis 缓存服务器 -->
+    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+          p:hostName="${redis.host}"
+          p:port="${redis.port}"
+          p:password="${redis.password}"
+          p:usePool="${redis.usePool}"
+          p:timeout="${redis.timeout}"
+          p:poolConfig-ref="poolConfig"/>
+    <!-- redis操作模板 -->
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
+          p:connectionFactory-ref="connectionFactory"/>
+          <!--p:keySerializer="org.springframework.data.redis.serializer.StringRedisSerializer"-->
+          <!--p:valueSerializer="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"-->
+    <!-- 缓存 -->
+    <bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager"
+          c:template-ref="redisTemplate"/>
+</beans>
