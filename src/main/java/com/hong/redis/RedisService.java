@@ -5,14 +5,14 @@ package com.hong.redis;
  */
 public interface RedisService {
     /**
-     * Í¨¹ıkeyÉ¾³ı
+     * é€šè¿‡keyåˆ é™¤
      *
      * @param keys
      */
     long del(String... keys);
 
     /**
-     * Ìí¼Ókey value ²¢ÇÒÉèÖÃ´æ»îÊ±¼ä(byte)
+     * æ·»åŠ key value å¹¶ä¸”è®¾ç½®å­˜æ´»æ—¶é—´(byte)
      *
      * @param key
      * @param value
@@ -21,16 +21,16 @@ public interface RedisService {
     void set(byte[] key, byte[] value, long liveTime);
 
     /**
-     * Ìí¼Ókey value ²¢ÇÒÉèÖÃ´æ»îÊ±¼ä
+     * æ·»åŠ key value å¹¶ä¸”è®¾ç½®å­˜æ´»æ—¶é—´
      *
      * @param key
      * @param value
-     * @param liveTime µ¥Î»Ãë
+     * @param liveTime å•ä½ç§’
      */
     void set(String key, String value, long liveTime);
 
     /**
-     * Ìí¼Ókey value
+     * æ·»åŠ key value
      *
      * @param key
      * @param value
@@ -38,7 +38,7 @@ public interface RedisService {
     void set(String key, String value);
 
     /**
-     * Ìí¼Ókey value (×Ö½Ú)(ĞòÁĞ»¯)
+     * æ·»åŠ key value (å­—èŠ‚)(åºåˆ—åŒ–)
      *
      * @param key
      * @param value
@@ -46,7 +46,7 @@ public interface RedisService {
     void set(byte[] key, byte[] value);
 
     /**
-     * »ñÈ¡redis value (String)
+     * è·å–redis value (String)
      *
      * @param key
      * @return
@@ -54,7 +54,7 @@ public interface RedisService {
     String get(String key);
 
     /**
-     * Í¨¹ıÕıÔòÆ¥Åäkeys
+     * é€šè¿‡æ­£åˆ™åŒ¹é…keys
      *
      * @param pattern
      * @return
@@ -62,7 +62,7 @@ public interface RedisService {
     void setKeys(String pattern);
 
     /**
-     * ¼ì²ékeyÊÇ·ñÒÑ¾­´æÔÚ
+     * æ£€æŸ¥keyæ˜¯å¦å·²ç»å­˜åœ¨
      *
      * @param key
      * @return
@@ -70,19 +70,19 @@ public interface RedisService {
     boolean exists(String key);
 
     /**
-     * Çå¿Õredis ËùÓĞÊı¾İ
+     * æ¸…ç©ºredis æ‰€æœ‰æ•°æ®
      *
      * @return
      */
     String flushDB();
 
     /**
-     * ²é¿´redisÀïÓĞ¶àÉÙÊı¾İ
+     * æŸ¥çœ‹redisé‡Œæœ‰å¤šå°‘æ•°æ®
      */
     long dbSize();
 
     /**
-     * ¼ì²éÊÇ·ñÁ¬½Ó³É¹¦
+     * æ£€æŸ¥æ˜¯å¦è¿æ¥æˆåŠŸ
      *
      * @return
      */

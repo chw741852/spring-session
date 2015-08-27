@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 public class SessionController {
-    @RequestMapping("/")
+    @RequestMapping("/index")
     public String index() {
         return "index";
     }
