@@ -10,8 +10,6 @@
 </head>
 <body>
 <h1>login</h1>
-<c:forEach items="${sessionScope}" var="attr">
-    ${attr.name}, ${attr.pass}
-</c:forEach>
+${name}, ${pass}
 </body>
 </html>
