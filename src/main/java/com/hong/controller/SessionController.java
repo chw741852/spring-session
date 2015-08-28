@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Cai on 2015/6/11 14:37.
@@ -17,9 +17,9 @@ public class SessionController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(String name, String pass, HttpSession session) {
-        session.setAttribute("name", name);
-        session.setAttribute("pass", pass);
+    public String login(String name, String pass, HttpServletRequest request) {
+        request.getSession().setAttribute("name", name);
+        request.getSession().setAttribute("pass", pass);
 
         return "login";
     }

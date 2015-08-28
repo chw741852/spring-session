@@ -20,7 +20,7 @@
     <context:property-placeholder location="classpath:redis.properties"/>
 
     <!-- 配置spring-session -->
-    <!--<bean id="redisHttpSession" class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration"/>-->
+    <bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration"/>
     <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig"
           p:maxTotal="${redis.pool.maxTotal}"
           p:maxIdle="${redis.pool.maxIdle}"
@@ -32,11 +32,7 @@
     <!-- 配置redis 缓存服务器 -->
     <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
           p:hostName="${redis.host}"
-          p:port="${redis.port}"
-          p:password="${redis.password}"
-          p:usePool="${redis.usePool}"
-          p:timeout="${redis.timeout}"
-          p:poolConfig-ref="poolConfig"/>
+          p:port="${redis.port}"/>
     <!-- redis操作模板 -->
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
           p:connectionFactory-ref="connectionFactory"/>
