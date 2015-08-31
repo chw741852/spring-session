@@ -23,4 +23,9 @@ public class SessionController {
 
         return "login";
     }
+
+    @RequestMapping(value = "/getUsername", method = RequestMethod.GET)
+    public String getUsername() {
+        return "username";
+    }
 }

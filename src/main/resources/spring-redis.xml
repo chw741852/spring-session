@@ -32,13 +32,22 @@
     <!-- 配置redis 缓存服务器 -->
     <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
           p:hostName="${redis.host}"
-          p:port="${redis.port}"/>
+          p:port="${redis.port}"
+          p:poolConfig-ref="poolConfig"/>
     <!-- redis操作模板 -->
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
-          p:connectionFactory-ref="connectionFactory"/>
-          <!--p:keySerializer="org.springframework.data.redis.serializer.StringRedisSerializer"-->
-          <!--p:valueSerializer="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"-->
+          p:connectionFactory-ref="connectionFactory"
+          p:keySerializer="org.springframework.data.redis.serializer.StringRedisSerializer"
+          p:valueSerializer="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+
     <!-- 缓存 -->
-    <bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager"
-          c:template-ref="redisTemplate"/>
+    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+        <property name="caches">
+            <set>
+                <bean class="org.springframework.data.redis.cache.RedisCacheManager" c:template-ref="redisTemplate"/>
+            </set>
+        </property>
+    </bean>
+    <!--<bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager"-->
+          <!--c:template-ref="redisTemplate"/>-->
 </beans>

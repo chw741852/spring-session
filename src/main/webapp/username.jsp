@@ -10,6 +10,6 @@
 </head>
 <body>
 <h1>login</h1>
-<a href="${pageContext.request.contextPath}/getUsername">查看session</a>
+${name}, ${pass}
 </body>
 </html>
