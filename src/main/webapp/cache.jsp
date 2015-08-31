@@ -6,10 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>username</title>
+    <title>Cache</title>
 </head>
 <body>
-<h1>username</h1>
+<h1>Cache</h1>
 ${name}, ${pass}
 </body>
 </html>

@@ -4,10 +4,10 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:cache="http://www.springframework.org/schema/cache"
        xmlns:c="http://www.springframework.org/schema/c"
-       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
-       http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+       http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <context:annotation-config/>
     <cache:annotation-driven cache-manager="cacheManager"/>
@@ -36,18 +36,18 @@
           p:poolConfig-ref="poolConfig"/>
     <!-- redis操作模板 -->
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
-          p:connectionFactory-ref="connectionFactory"
-          p:keySerializer="org.springframework.data.redis.serializer.StringRedisSerializer"
-          p:valueSerializer="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+          p:connectionFactory-ref="connectionFactory"/>
+          <!--p:keySerializer="org.springframework.data.redis.serializer.StringRedisSerializer"-->
+          <!--p:valueSerializer="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"-->
 
     <!-- 缓存 -->
-    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
-        <property name="caches">
-            <set>
-                <bean class="org.springframework.data.redis.cache.RedisCacheManager" c:template-ref="redisTemplate"/>
-            </set>
-        </property>
-    </bean>
-    <!--<bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager"-->
-          <!--c:template-ref="redisTemplate"/>-->
+    <!--<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">-->
+        <!--<property name="caches">-->
+            <!--<set>-->
+                <!--<bean class="org.springframework.data.redis.cache.RedisCacheManager" c:template-ref="redisTemplate"/>-->
+            <!--</set>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager"
+          c:template-ref="redisTemplate"/>
 </beans>
