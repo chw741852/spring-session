@@ -28,11 +28,25 @@ public class SessionController {
         request.getSession().setAttribute("name", name);
         request.getSession().setAttribute("pass", pass);
 
+        System.out.println("set username: " + name);
+        System.out.println("set password: " + pass);
+
         return "login";
     }
 
     @RequestMapping(value = "/getUsername", method = RequestMethod.GET)
-    public String getUsername() {
+    public String getUsername(ModelMap modelMap, HttpServletRequest request) {
+//        String name = (String)request.getSession().getAttribute("name");
+//        String pass = (String)request.getSession().getAttribute("pass");
+//
+//        modelMap.addAttribute("name", name);
+//        modelMap.addAttribute("username", name);
+//        modelMap.addAttribute("pass", pass);
+//        modelMap.addAttribute("password", pass);
+//
+//        System.out.println("get username: " + name);
+//        System.out.println("get password: " + pass);
+
         return "username";
     }
 

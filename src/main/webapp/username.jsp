@@ -10,6 +10,7 @@
 </head>
 <body>
 <h1>username</h1>
-${name}, ${pass}
+${name}, ${pass}<br/>
+${username}, ${password}
 </body>
 </html>
