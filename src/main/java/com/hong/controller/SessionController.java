@@ -35,18 +35,7 @@ public class SessionController {
     }
 
     @RequestMapping(value = "/getUsername", method = RequestMethod.GET)
-    public String getUsername(ModelMap modelMap, HttpServletRequest request) {
-//        String name = (String)request.getSession().getAttribute("name");
-//        String pass = (String)request.getSession().getAttribute("pass");
-//
-//        modelMap.addAttribute("name", name);
-//        modelMap.addAttribute("username", name);
-//        modelMap.addAttribute("pass", pass);
-//        modelMap.addAttribute("password", pass);
-//
-//        System.out.println("get username: " + name);
-//        System.out.println("get password: " + pass);
-
+    public String getUsername() {
         return "username";
     }
 

@@ -30,16 +30,17 @@
           p:timeBetweenEvictionRunsMillis="${redis.pool.timeBetweenEvictionRunsMillis}"
           p:blockWhenExhausted="${redis.pool.blockWhenExhausted}" />
     <!-- 配置redis 缓存服务器 -->
-    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
           p:hostName="${redis.host}"
           p:port="${redis.port}"
           p:poolConfig-ref="poolConfig"/>
     <!-- redis操作模板 -->
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
-          p:connectionFactory-ref="connectionFactory"/>
+          p:connectionFactory-ref="jedisConnectionFactory"/>
           <!--p:keySerializer="org.springframework.data.redis.serializer.StringRedisSerializer"-->
           <!--p:valueSerializer="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"-->
-
+    <bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"
+          p:connectionFactory-ref="jedisConnectionFactory"/>
     <!-- 缓存 -->
     <!--<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">-->
         <!--<property name="caches">-->

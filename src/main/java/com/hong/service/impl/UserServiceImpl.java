@@ -1,6 +1,7 @@
-package com.hong.service;
+package com.hong.service.impl;
 
 import com.hong.model.User;
+import com.hong.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
@@ -19,11 +20,11 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User getUser(String id) {
         User user = new User();
-        user.setId(id);
-        user.setUsername("admin");
-        user.setPassword("admin123");
-        user.setName("蔡宏伟");
-        user.setAge(25);
+        user.setId("0");
+        user.setUsername("guest");
+        user.setPassword("guest");
+        user.setName("guest");
+        user.setAge(24);
         user.setSex("男");
 
         logger.debug("getUser");
@@ -34,8 +35,6 @@ public class UserServiceImpl implements IUserService {
     @CachePut(value = "user", key = "#user.id")
     @Override
     public User saveUser(User user) {
-        user.setName("caihongwei");
-        user.setSex("女");
         logger.debug("saveUser");
 
         return user;
@@ -44,9 +43,6 @@ public class UserServiceImpl implements IUserService {
     @CachePut(value = "user", key = "#user.id")
     @Override
     public User updateUser(User user) {
-        user.setName("cai");
-        user.setAge(30);
-
         logger.debug("updateUser");
 
         return user;

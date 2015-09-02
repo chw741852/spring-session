@@ -1,15 +1,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by Cai on 2015/6/10 11:24.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%-- Created by cai on 2015/9/2 17:25. --%>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>username</title>
+    <title></title>
 </head>
 <body>
-<h1>username</h1>
-${name}, ${pass}
+vl: ${vl}
+vv: ${vv}
+vh: ${vh}
+vx: ${vs}
+<c:forEach items="${vzss}" var="vzs">
+    vzs: ${vzs}
+</c:forEach>
 </body>
 </html>

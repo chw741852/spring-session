@@ -14,5 +14,6 @@
     pass: <input type="text" name="pass"><br/>
     <input type="submit" value="submit"/>
 </form>
+<a href="${pageContext.request.contextPath}/user/index">user index</a>
 </body>
 </html>
