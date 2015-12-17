@@ -16,7 +16,7 @@ import java.util.concurrent.CountDownLatch;
  */
 public class TestEval {
     private static final int THREAD_COUNT = 20;
-    private static final int HONGBAO_COUNT = 10_000;
+    private static final int HONGBAO_COUNT = 100_000;
 
     private static final String REDIS_PATH = "192.168.136.128";
     private static JedisPool jedisPool;
@@ -43,6 +43,7 @@ public class TestEval {
 
     static {
         JedisPoolConfig config = new JedisPoolConfig();
+        config.setMaxTotal(THREAD_COUNT);
         jedisPool = new JedisPool(config, REDIS_PATH);
     }
 
@@ -106,7 +107,7 @@ public class TestEval {
                         Object obj = jedis.eval(LUA_SCRIPT, 4, HONGBAO_LIST, HONGBAO_CONSUMED_LIST, HONGBAO_CONSUMED_MAP, "" + j);
                         j++;
                         if (obj != null) {
-                            System.out.println(obj);
+//                            System.out.println(obj);
                         } else {
                             // 已经取完了
                             if (jedis.llen(HONGBAO_LIST) == 0) break;
