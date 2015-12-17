@@ -104,7 +104,7 @@ public class TestEval {
                     String sha = jedis.scriptLoad(LUA_SCRIPT);
                     int j = HONGBAO_COUNT / THREAD_COUNT * temp;
                     while (true) {
-                        Object obj = jedis.eval(LUA_SCRIPT, 4, HONGBAO_LIST, HONGBAO_CONSUMED_LIST, HONGBAO_CONSUMED_MAP, "" + j);
+                        Object obj = jedis.evalsha(sha, 4, HONGBAO_LIST, HONGBAO_CONSUMED_LIST, HONGBAO_CONSUMED_MAP, "" + j);
                         j++;
                         if (obj != null) {
 //                            System.out.println(obj);
